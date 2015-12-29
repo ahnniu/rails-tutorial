@@ -1,0 +1,17 @@
+# Rails Tutorial Practice
+
+[Ruby On Rails教程](http://railstutorial-china.org/book/) 练手.
+
+## Install
+
+```sh
+# Install RVM
+$ \curl -sSL https://get.rvm.io | bash -s stable
+# Reopen the Terminal
+$ bash --login
+$ cd /project/path
+$ git clone git@bitbucket.org:ahnniu/rails-tutorial.git
+$ cd rails-tutorial
+$ gem install bundler
+$ bundle install
+```
