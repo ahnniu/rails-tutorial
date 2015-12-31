@@ -52,20 +52,36 @@ guard :rspec, cmd: "bundle exec rspec" do
     [
       rspec.spec.("routing/#{m[1]}_routing"),
       rspec.spec.("controllers/#{m[1]}_controller"),
-      rspec.spec.("acceptance/#{m[1]}")
+      rspec.spec.("acceptance/#{m[1]}"),
+      rspec.spec.("requests/#{m[1]}")
     ]
   end
 
-  # watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/requests/#{m[1]}_spec.rb"] }
-
-
   # Rails config changes
   watch(rails.spec_helper)     { rspec.spec_dir }
-  watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
-  watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
+
+  watch(rails.routes) do
+    [
+      "#{rspec.spec_dir}/routing",
+      "#{rspec.spec_dir}/requests"
+    ]
+  end
+  
+  watch(rails.app_controller) do
+    [
+      "#{rspec.spec_dir}/controllers",
+      "#{rspec.spec_dir}/requests"      
+    ]
+  end
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
+  watch(rails.view_dirs) do |m|
+    [
+      rspec.spec.("features/#{m[1]}"),
+      rspec.spec.call("requests/#{m[1]}")
+    ]
+  end
+
   watch(rails.layouts)       { |m| rspec.spec.("features/#{m[1]}") }
 
   # Turnip features and steps
