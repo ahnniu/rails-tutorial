@@ -90,3 +90,12 @@ guard :rspec, cmd: "bundle exec rspec" do
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
 end
+
+guard 'ctags-bundler', 
+  :src_path => ".",
+  :project_file => ".tags",
+  :bundler_tags_file => ".gemtags" do
+
+  watch(/^.*\.rb$/)
+  watch('Gemfile.lock')
+end

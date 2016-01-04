@@ -7,6 +7,7 @@ gem 'rails', '4.1.14'
 group :development, :test do
   gem 'rspec-rails', '~>2.0'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.4'
+  gem 'guard-ctags-bundler', '~> 1.4'
 end
 
 group :test do
