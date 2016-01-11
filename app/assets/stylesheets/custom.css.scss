@@ -1,0 +1,19 @@
+@import "bootstrap";
+
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.main-container {
+  // .navbar中 margin-bottom: 20px;
+  margin-top: -20px;
+  padding: 0;
+}
+
+.footer {
+  li {
+    margin-right: 15px;
+  }
+}
