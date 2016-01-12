@@ -15,6 +15,7 @@ group :test do
 end
 
 gem 'bootstrap-sass', '~> 3.3'
+gem 'bcrypt-ruby', '~> 3.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
