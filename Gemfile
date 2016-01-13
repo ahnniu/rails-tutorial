@@ -13,6 +13,7 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl', '~> 4.5'
+  gem 'factory_girl_rails'
 end
 
 gem 'bootstrap-sass', '~> 3.3'

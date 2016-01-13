@@ -57,6 +57,9 @@ GEM
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     ffi (1.9.10)
     formatador (0.2.5)
     guard (2.13.0)
@@ -193,6 +196,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   factory_girl (~> 4.5)
+  factory_girl_rails
   guard-ctags-bundler (~> 1.4)
   guard-rspec (~> 4.6, >= 4.6.4)
   jbuilder (~> 2.0)
