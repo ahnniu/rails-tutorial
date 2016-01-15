@@ -16,6 +16,7 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+gem 'sprockets-rails', '~> 2.3', :require => 'sprockets/railtie'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bcrypt-ruby', '~> 3.1'
 

@@ -1,6 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// 使用bootstrap CDN
+// @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+// 路径可以写 /assets/bootstrap/glyphicons...eot绝对路径，也可以省略 assets前面，写相对路径
+@font-face{
+  font-family:'Glyphicons Halflings';
+  src: url("bootstrap/glyphicons-halflings-regular.eot");
+  src: url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
+       url("bootstrap/glyphicons-halflings-regular.woff") format("woff"),
+       url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"),
+       url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
+}
+
 .center-block {
   margin-left: auto;
   margin-right: auto;
