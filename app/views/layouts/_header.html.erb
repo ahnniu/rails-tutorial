@@ -14,7 +14,24 @@
       <ul class="nav navbar-nav">
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Help', help_path %></li>
-        <li><%= link_to 'Sign up', signup_path %></li>
+        <li>
+          <% if signed_in? %>
+            <a href="#" id="accountDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountDropdownMenu">
+              <li><a href="#">User Profile</a></li>
+              <li><%= link_to "User Profile", user_path(current_user)  %></li>
+              <li><a href="#">Settings</a></li>
+              <li role="seperator" class="divider"></li>
+              <li><%= link_to "Sign out", signout_path %></li>
+            </ul>
+          <% else %>
+            <li><%= link_to 'Sign in', signin_path %></li>
+          <% end %>
+
+        </li>      
       </ul>
     </div>
   </div>

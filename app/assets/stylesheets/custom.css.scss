@@ -53,3 +53,7 @@
   @extend .control-group;
   @extend .has-error;
 }
+
+.alert-error {
+  @extend .alert-danger;
+}
