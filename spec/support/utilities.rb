@@ -1,1 +1,3 @@
 include ApplicationHelper
+include FlashSpecHelper
+include AuthenticationSpecHelp
