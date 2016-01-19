@@ -29,17 +29,18 @@ describe 'Authentication' do
 
     describe 'with valid information' do
 
-      before do
-        @user = User.create(name: "Example User", email: "user@example.com",
-                      password: "foobar", password_confirmation: "foobar")
+      let(:user) { FactoryGirl.create(:user) }
 
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
+      before do
+        # @user = User.create(name: "Example User", email: "user@example.com",
+        #               password: "foobar", password_confirmation: "foobar")
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: user.password
         click_button 'Sign in'
       end
 
-      it { should have_title("#{@user.name}") }
-      it { should have_link('Profile', href: user_path(@user)) }
+      it { should have_title("#{user.name}") }
+      it { should have_link('Profile', href: user_path(user)) }
       it { should have_link('Sign out', href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
