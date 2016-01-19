@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save { email.downcase! }
+  before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[A-Za-z]+[A-Za-z0-9_.-]*@[A-Za-z0-9_-]+\.?[A-Za-z0-9_-]+\z/
   validates :email, presence: true, 
@@ -19,6 +20,6 @@ class User < ActiveRecord::Base
 private
 
   def create_remember_token
-    self.remember_token = self.hash(self.new_remember_token)
+    self.remember_token = User.hash(User.new_remember_token)
   end
 end
