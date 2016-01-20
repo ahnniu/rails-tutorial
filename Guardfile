@@ -98,4 +98,5 @@ guard 'ctags-bundler',
 
   watch(/^.*\.rb$/)
   watch('Gemfile.lock')
+  watch('Gemfile')
 end
