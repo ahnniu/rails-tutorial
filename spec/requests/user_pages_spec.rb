@@ -75,7 +75,8 @@ describe "UserPages" do
 
         it { should have_content('error') }
       end
-      describe 'description' do
+
+      describe 'with valid information' do
         let(:new_name) { 'New Name' }
         let(:new_email) { 'new@example.com' }
         before do
