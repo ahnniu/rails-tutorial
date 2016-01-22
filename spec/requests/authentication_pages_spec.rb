@@ -62,6 +62,12 @@ describe 'Authentication' do
           specify { expect(response).to redirect_to(signin_path) }
         end
 
+        describe 'visit the user index' do
+          before { visit users_path }
+
+          it { should have_title('Sign in')}
+        end
+
       end
 
       describe 'when attempting to visit a protected page' do

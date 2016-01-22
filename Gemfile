@@ -19,6 +19,9 @@ end
 gem 'sprockets-rails', '~> 2.3', :require => 'sprockets/railtie'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bcrypt-ruby', '~> 3.1'
+gem 'faker', '~> 1.6'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
