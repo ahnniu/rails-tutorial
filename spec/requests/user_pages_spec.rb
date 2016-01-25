@@ -162,6 +162,18 @@ describe "UserPages" do
           end.to change(User, :count).by(-1)
         end
         it { should_not have_link('delete', href: user_path(admin)) }
+
+        describe 'when attempting to submitting a DELETE request to Users#destroy' do
+          before do
+            sign_in admin, no_capybara:true
+          end
+
+          it 'should not delete admin himself' do
+            expect do
+              delete user_path(admin)
+            end.not_to change(User, :count)
+          end
+        end
       end
     end
   end
