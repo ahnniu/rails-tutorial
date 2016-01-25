@@ -29,6 +29,7 @@ module SessionsHelper
       User.hash(User.new_remember_token))
     self.current_user = nil
     cookies.delete(:remember_token)
+    session.delete(:return_to)
   end
 
   def store_location

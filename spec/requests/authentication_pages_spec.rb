@@ -91,6 +91,16 @@ describe 'Authentication' do
             expect(page).to have_title('Edit user')
           end
         end
+
+        describe 'sign out and then sign in again' do
+          before do
+            click_link 'Sign out'
+            sign_in user
+          end
+          it 'should render the default user profile page' do
+            expect(page).to have_title(user.name)
+          end
+        end
       end
     end
 
