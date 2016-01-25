@@ -43,7 +43,7 @@ describe "UserPages" do
         fill_in 'Password', with: 'foobar'
         fill_in 'Confirmation', with: 'foobar'
       end
-      
+
       it 'should create a user' do
         expect { click_button submit }.to change(User, :count).by(1)
       end
@@ -55,10 +55,10 @@ describe "UserPages" do
         it { should have_link('Sign out') }
         it { should have_title(user.name) }
         it { should have_success_message('Welcome') }
-        
+
       end
     end
-    
+
   end
 
   describe 'edit' do
@@ -74,7 +74,7 @@ describe "UserPages" do
       it { should have_link('change', href: 'http://gravatar.com/emails') }
 
       describe 'with invalid information' do
-        before { click_button 'Save changes' }              
+        before { click_button 'Save changes' }
 
         it { should have_content('error') }
       end
@@ -121,7 +121,7 @@ describe "UserPages" do
     describe 'pagination' do
       before(:all) { 30.times { FactoryGirl.create(:user) } }
       after(:all) { User.delete_all }
-      
+
       it { should have_selector('div.pagination') }
 
       it 'should list each user' do
@@ -130,9 +130,27 @@ describe "UserPages" do
         end
       end
     end
-      
-  end 
 
+    describe 'delete links' do
+      it { should_not have_link('delete') }
 
+      describe 'as an admin user' do
+        let(:admin) { FactoryGirl.create(:admin) }
+
+        before do
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete', href: user_path(User.first)) }
+        it 'should delete another user' do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(User, :count).by(-1)
+        end
+        it { should_not have_link('delete', href: user_path(admin)) }
+      end
+    end
+  end
 
 end
