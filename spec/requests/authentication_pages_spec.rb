@@ -112,11 +112,13 @@ describe 'Authentication' do
       let(:user) { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
 
-      before { sign_in non_admin, no_capybara: true }
+      before { sign_in non_admin }
 
       describe 'submitting a DELETE request to the Users#destroy action' do
         before { delete user_path(user) }
-        specify { expect(response).to redirect_to(root_path) }
+        it 'should redirect to root url' do
+          expect(page).to have_title(full_title(''))
+        end        
       end
     end
 
