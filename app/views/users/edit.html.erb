@@ -6,32 +6,14 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages' %>
-          <div class="form-group">
-            <%= f.label :name, class: "control-label" %>
-            <%= f.text_field :name, class: "form-control" %>
-          </div>
+      
+        <%= form_for(@user) do |f| %>
 
-          <div class="form-group">
-            <%= f.label :email, class: "control-label" %>
-            <%= f.text_field :email, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password, class: "control-label" %>
-            <%= f.password_field :password, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password_confirmation, "Confirmation" %>
-            <%= f.password_field :password_confirmation, class: "form-control" %>
-          </div>
-
+          <%= render partial: 'fields', locals: { f: f } %>
           <div class="form-group">
             <%= f.submit "Save changes", class: "btn btn-lg btn-primary" %>
           </div>
-
         <% end %> 
 
         <%= gravatar_for @user %>       
