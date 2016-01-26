@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    # resources :microposts, shallow: true
+  end
   resources :sessions, only: [:new, :create, :destroy]
   
   root 'static_pages#home'
