@@ -1,0 +1,22 @@
+<div class="user-info clearfix">
+  <div class="gravatar pull-left">
+    <a href="<%= user_path(current_user) %>">
+      <%= gravatar_for current_user, size: 52 %>
+    </a>  
+  </div>
+  <div class="profile pull-left">
+    <ul class="list-unstyled">
+      <li>
+        <strong><%= current_user.name %></strong>
+      </li>
+      <li>
+        <%= link_to "view my profile", user_path(current_user)  %>
+      </li>
+      <li>
+        <%= current_user.microposts.size %> microposts
+      </li>
+    </ul>
+    
+  </div>  
+</div>
+
