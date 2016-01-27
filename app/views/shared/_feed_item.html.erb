@@ -1,0 +1,19 @@
+<li id="<%= feed_item.id %>" class="feed-item clearfix">
+  <div class="pull-left center-block gravatar">
+    <%= link_to gravatar_for(feed_item.user), user_path(feed_item.user)  %>
+  </div>
+  <div class="pull-left item-micropost">
+    <ul class="list-unstyled">
+      <li>
+        <%= link_to feed_item.user.name, user_path(feed_item.user)  %>
+      </li>
+      <li>
+        <%= feed_item.content %>
+      </li>
+      <li>
+        <small><%= time_ago_in_words feed_item.created_at %></small>
+      </li>
+    </ul>
+  </div>
+  
+</li>

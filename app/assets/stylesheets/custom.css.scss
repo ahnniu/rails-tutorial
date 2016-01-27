@@ -32,13 +32,17 @@
   }
 }
 
+.micropost-item {
+  padding: 10px 0;
+  border-top: 1px solid #e8e8e8;  
+}
+
 .user-profile {
   padding:15px;
 
   .user-microposts {
     li {
-      padding: 10px 0;
-      border-top: 1px solid #e8e8e8;
+      @extend .micropost-item;
     }
   }
 }
@@ -54,6 +58,14 @@
     padding: 15px 0;
     .profile {
       margin-left: 10px;
+    }
+  }
+
+  .feed-item {
+    @extend .micropost-item;
+
+    .item-micropost {
+      margin: 0 10px;
     }
   }
 }
