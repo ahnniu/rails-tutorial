@@ -13,7 +13,7 @@
         <%= link_to "view my profile", user_path(current_user)  %>
       </li>
       <li>
-        <%= current_user.microposts.size %> microposts
+        <%= pluralize(current_user.microposts.count, "micropost") %>
       </li>
     </ul>
     

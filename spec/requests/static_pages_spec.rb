@@ -21,14 +21,41 @@ describe "StaticPages" do
     describe 'for signed-in users' do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:micropost, user: user, content: 'Hello')
-        FactoryGirl.create(:micropost, user:user, content: 'World')
         sign_in user
-        visit root_path
       end
-      it 'should rend the user\'s feed' do
-        user.feed.each do |item|
-          expect(page).to have_selector("li##{item.id}", text: "#{item.content}")
+
+      describe 'about feed' do
+        before do
+          FactoryGirl.create(:micropost, user: user, content: 'Hello')
+          FactoryGirl.create(:micropost, user: user, content: 'World')
+          visit root_path         
+        end
+
+        it 'should rend the user\'s feed' do
+          user.feed.each do |item|
+            expect(page).to have_selector("li##{item.id}", text: "#{item.content}")
+          end
+        end        
+      end
+
+      describe 'it should display correct micropost count' do
+
+        describe 'when have only 1 micropost' do
+          before do
+            FactoryGirl.create(:micropost, user: user, content: '1 micropost')
+            visit root_path
+          end
+          specify { expect(page).to have_content('1 micropost') }
+        end
+
+        describe 'when have more then 1 micropost' do
+          before do
+            10.times do |i|
+              FactoryGirl.create(:micropost, user: user, content: "micropost##{i}")
+            end
+            visit root_path
+          end
+          specify { expect(page).to have_content('10 microposts') }
         end
       end
     end
