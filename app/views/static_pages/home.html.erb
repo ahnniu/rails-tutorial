@@ -1,21 +1,7 @@
 <% if signed_in? %>
-  <div class="row page-home">
-    <div class="col-sm-offset-1 col-sm-3">
-      <%= render 'shared/user_info' %>
-      <%= render 'shared/micropost_form' %>
-    </div>
-    <div class="col-sm-8">
-      <h3>Micropost feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
+  <%= render 'shared/signed_in_home' %>
 <% else %>  
-  <div class="jumbotron center-block">
-    <h1>Sample App</h1>
-    <p>
-      This is the home page for the <a href="#">Rails Tutorial</a>
-    </p>
-    <%= link_to 'Sign up now', '#', class: 'btn btn-default btn'  %>
-  </div>
+  <%= render 'static_pages/static_home' %>
 <% end %>
 
+rs
