@@ -3,11 +3,13 @@
 <div class="user-profile">
 
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-2 user-info center-block">
+    <div class="col-sm-offset-1 col-sm-3 user-info">
       <%= gravatar_for @user, size: 40 %>
       <h5><%= @user.name %></h5>
+      <%= render partial: 'shared/stats', locals: {user: @user } %>
     </div>
     <div class="col-sm-8 user-microposts">
+      <%= render 'follow_form' if signed_in? %>
       <% if @user.microposts.any? %>
         <h3>Microposts (<%= @user.microposts.size %>)</h3>
         <ul class="list-unstyled">

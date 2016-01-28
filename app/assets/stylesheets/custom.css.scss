@@ -34,11 +34,27 @@
 
 .micropost-item {
   padding: 10px 0;
-  border-top: 1px solid #e8e8e8;  
+  border-top: 1px solid #e8e8e8; 
+}
+
+.stats {
+  a {
+    @extend .center-block;
+    display: block;
+    float: left;
+    padding: 0 15px 0 0;
+  }
+
+  strong {
+    display: block;
+  }
+  span {
+    display: block;
+  }
 }
 
 .user-profile {
-  padding:15px;
+  padding: 15px;
 
   .user-microposts {
 
@@ -53,7 +69,7 @@
 
 .page-home {
   .user-info {
-    padding: 15px 0;
+    padding: 15px 0 0 0;
     .profile {
       margin-left: 10px;
     }

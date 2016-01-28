@@ -69,6 +69,43 @@ describe "StaticPages" do
           specify { expect(page).to have_content('10 microposts') }
         end
       end
+      describe 'follower / follwing counts' do
+
+        describe 'with 1 follower' do
+          let(:other_user) { FactoryGirl.create(:user) }
+          before do
+            other_user.follow!(user)
+            visit root_path
+          end
+
+          it { should have_link('0 following', href: following_user_path(user)) }
+          it { should have_link('1 follower', href: followers_user_path(user)) }
+        end
+        
+
+        describe 'with more than 1 followers' do
+          before do
+            users = Array.new
+            10.times do |i|
+              users[i] = FactoryGirl.create(:user)
+            end
+            
+            followed_users = users[0..5]
+            followers = users[6..9]
+
+            followed_users.each do |followed_user|
+              user.follow!(followed_user)
+            end
+            followers.each do |follower|
+              follower.follow!(user)
+            end
+            visit root_path
+          end
+
+          it { should have_link('6 following', href: following_user_path(user)) }         
+          it { should have_link('4 followers', href: followers_user_path(user)) }
+        end
+      end
     end
   end
 

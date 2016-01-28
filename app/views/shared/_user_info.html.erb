@@ -1,22 +1,22 @@
 <div class="user-info clearfix">
   <div class="gravatar pull-left">
-    <a href="<%= user_path(current_user) %>">
-      <%= gravatar_for current_user, size: 52 %>
+    <a href="<%= user_path(user) %>">
+      <%= gravatar_for user, size: 52 %>
     </a>  
   </div>
   <div class="profile pull-left">
     <ul class="list-unstyled">
       <li>
-        <strong><%= current_user.name %></strong>
+        <strong><%= user.name %></strong>
       </li>
       <li>
-        <%= link_to "view my profile", user_path(current_user)  %>
+        <%= link_to "view my profile", user_path(user)  %>
       </li>
       <li>
-        <%= pluralize(current_user.microposts.count, "micropost") %>
+        <%= pluralize(user.microposts.count, "micropost") %>
       </li>
     </ul>
     
-  </div>  
+  </div>
 </div>
 

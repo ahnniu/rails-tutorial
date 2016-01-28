@@ -1,6 +1,7 @@
 <div class="row page-home">
   <div class="col-sm-offset-1 col-sm-3">
-    <%= render 'shared/user_info' %>
+    <%= render partial: 'shared/user_info', locals: { user: current_user } %>
+    <%= render partial: 'shared/stats', locals: { user: current_user } %>
     <%= render 'shared/micropost_form' %>
   </div>
   <div class="col-sm-8">
