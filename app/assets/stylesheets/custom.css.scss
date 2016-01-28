@@ -41,9 +41,7 @@
   padding:15px;
 
   .user-microposts {
-    li {
-      @extend .micropost-item;
-    }
+
   }
 }
 
