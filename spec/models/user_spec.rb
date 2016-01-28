@@ -21,6 +21,11 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:relationships) }
+  it { should respond_to(:followed_users) }
+  it { should respond_to(:follow!) }
+  it { should respond_to(:unfollow!) }
+  it { should respond_to(:following?) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -172,6 +177,30 @@ describe User do
       it { should include(newer_micropost) }
       it { should include(older_micropost) }
       it { should_not include(unfollowed_post) }
+    end
+  end
+
+  describe 'following' do
+    let(:other_user) { FactoryGirl.create(:user) }
+    before do
+      @user.save
+      @user.follow!(other_user)
+    end
+
+    it { should be_following(other_user) }
+
+    describe 'in following list' do
+      subject { @user.followed_users }
+      it { should include(other_user) }
+    end
+
+    describe 'and unfollowing' do
+      before { @user.unfollow!(other_user) }
+
+      describe 'in following user list' do
+        subject { @user.followed_users }
+        it { should_not include(other_user) }
+      end
     end
   end
 end
