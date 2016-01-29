@@ -1,12 +1,12 @@
 <div class="stats clearfix">
   <a href="<%= following_user_path(user) %>">
-    <strong>
+    <strong id="following">
       <%= user.followed_users.count %>
     </strong>
     <span>following</span>
   </a>
   <a href="<%= followers_user_path(user) %>">
-    <strong>
+    <strong id="followers">
       <%= user.followers.count %>
     </strong>
     <span>
