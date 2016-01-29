@@ -171,12 +171,22 @@ describe User do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
       end
-
+      let(:followed_user) { FactoryGirl.create(:user) }
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user. microposts.create!(content: 'Hello')}
+      end
       subject { @user.feed }
 
       it { should include(newer_micropost) }
       it { should include(older_micropost) }
       it { should_not include(unfollowed_post) }
+
+      it 'should include followed user\'s microposts' do
+        followed_user.microposts.each do |micropost|
+          expect(@user.feed).to include(micropost)
+        end
+      end
     end
   end
 
