@@ -21,7 +21,7 @@ describe "UserPages" do
     it { should have_title(user.name) }
 
     describe 'microposts' do
-      it { should have_content(m1.content) }      
+      it { should have_content(m1.content) }
       it { should have_content(m2.content) }
 
       it { should have_content(user.microposts.size) }
@@ -74,6 +74,40 @@ describe "UserPages" do
             it { should have_selector("input[value='Follow']") }
         end
       end
+    end
+
+    describe 'follower / following counts' do
+      let(:followed_user) { FactoryGirl.create(:user) }
+      let(:follower) { FactoryGirl.create(:user) }
+
+      it { should have_link('0 following', href: following_user_path(user)) }
+      it { should have_link('0 follower', href: followers_user_path(user)) }
+
+      describe 'when follow another user' do
+        before do
+          user.follow!(followed_user)
+          visit user_path(user)
+        end
+      it { should have_link('1 following', href: following_user_path(user)) }
+      end
+
+      describe 'when another user follow him' do
+        before do
+          follower.follow!(user)
+          visit user_path(user)
+        end
+        it { should have_link('1 follower', href: followers_user_path(user)) }
+      end
+
+      describe 'when have more then 1 follower' do
+        before do
+          follower.follow!(user)
+          followed_user.follow!(user)
+          visit user_path(user)
+        end
+        it { should have_link('2 followers', href: followers_user_path(user)) }
+      end
+
     end
   end
 
@@ -245,7 +279,7 @@ describe "UserPages" do
     describe 'followed users' do
       before do
         sign_in user
-        visit following_user_path(user)        
+        visit following_user_path(user)
       end
 
       it { should have_title(full_title('Following')) }
